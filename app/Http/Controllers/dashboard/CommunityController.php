@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CommunityController extends Controller
 {
     public function index(){
-        return view('Dashboard.community');
+        return view('community');
     }
 
     public function store(Request $request)

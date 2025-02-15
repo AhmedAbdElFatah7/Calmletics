@@ -10,6 +10,6 @@ class PlayersController extends Controller
 {
     public function index(){
         $users = User::with('comFree','comPre')->get();
-        return view('Dashboard.dashboard',compact('users'));
+        return view('dashboard',compact('users'));
     }
 }
