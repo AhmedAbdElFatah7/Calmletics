@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\dashboard\CommunityController;
+use App\Http\Controllers\dashboard\PlayersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PlayersController::class, 'index'])->name('dashboard');
+
+Route::get('/community', [CommunityController::class, 'index'])->name('communities');
+
+Route::post('/community', [CommunityController::class, 'store'])->name('communities.store');

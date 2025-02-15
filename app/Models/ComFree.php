@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ComFree extends Model
 {
     use HasFactory;
+    protected $fillable = ['id', 'name', 'level', 'plan_id'];
     protected $table = 'comfrees';
         public function users()
     {
