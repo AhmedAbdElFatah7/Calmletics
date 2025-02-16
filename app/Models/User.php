@@ -25,6 +25,8 @@ class User extends Authenticatable implements JWTSubject
         'code',
         'role',
         'score',
+        'flag',
+        'image',
     ];
 
     /**
@@ -57,7 +59,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function planDates()
     {
-        return $this->belongsTo(Plandates::class);
+        return $this->belongsTo(planDate::class);
     }
 
     public function answers() { return $this->belongsTo(Answer::class); } 

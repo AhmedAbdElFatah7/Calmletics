@@ -46,4 +46,37 @@ class HomeController extends Controller
         $plan = $user->comFree->plan;
         return response()->json($plan);
     }
+
+
+    public function image(Request $request)
+    {
+        $user = User::find(auth()->id());
+        
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|', 
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+        $user->image = $request->image;
+        $user->save();
+
+        return response()->json(['message' => 'Image stored successfully'], 200);
+    }
+    public function flag(Request $request)
+    {
+        $user = User::find(auth()->id());
+        $validator = Validator::make($request->all(), [
+            'flag' => 'required|', 
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+        $user->flag = $request->flag;
+        $user->save();
+
+        return response()->json(['message' => 'flag stored successfully'], 200);
+    }
 }

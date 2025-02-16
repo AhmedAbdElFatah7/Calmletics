@@ -47,10 +47,12 @@ Route::middleware(['jwt.auth'])->prefix('player')->group(function () {
     
     Route::post('/getScore', [HomeController::class, 'getScore']);
     Route::get('/userPlan', [HomeController::class, 'userPlan']);
+    Route::post('/image', [HomeController::class, 'image']);
+    Route::post('/flag', [HomeController::class, 'flag']);
 
     Route::post('/join', [FreeCommunityController::class, 'join']);
     Route::post('/community', [FreeCommunityController::class, 'community']);
-    Route::get('/leaderboard', [FreeCommunityController::class, 'leaderboard']);
+    Route::post('/leaderboard', [FreeCommunityController::class, 'leaderboard']);
     Route::get('/plan', [FreeCommunityController::class, 'plan']);
 
     Route::post('/pre-join', [PreCommunityController::class, 'join']);
