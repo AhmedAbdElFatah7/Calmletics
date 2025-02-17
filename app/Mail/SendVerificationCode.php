@@ -23,7 +23,7 @@ class SendVerificationCode extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '505050',
+            subject: 'Calmletics Verification Code',
         );
     }
 
