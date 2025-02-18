@@ -44,8 +44,12 @@ public function updateimage(Request $request)
 public function editprofile(Request $request)
 {
     $user = User::find(auth()->id());
-    $user->name = $request->name;
-    $user->email = $request->email;
+    if ($request->name) {
+        $user->name = $request->name;
+    }
+    if ($request->email) {
+        $user->name = $request->email;
+    }
     $user->flag=$request->flag;
     $user->save();
     return response()->json([
