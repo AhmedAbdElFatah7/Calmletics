@@ -63,15 +63,9 @@ public function editprofile(Request $request)
 public function logout()
 {
     try {
-        $user = JWTAuth::parseToken()->authenticate(); 
-
-        if ($user) {
-            $user->delete();
-        }
-
         JWTAuth::invalidate(JWTAuth::getToken()); 
 
-        return response()->json(['message' => 'User successfully logged out and deleted']);
+        return response()->json(['message' => 'User successfully logged out']);
     } catch (\Exception $e) {
         return response()->json(['error' => 'Something went wrong'], 500);
     }
