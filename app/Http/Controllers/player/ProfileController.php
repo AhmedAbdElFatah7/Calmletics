@@ -48,7 +48,7 @@ public function editprofile(Request $request)
         $user->name = $request->name;
     }
     if ($request->email) {
-        $user->name = $request->email;
+        $user->email = $request->email;
     }
     $user->flag=$request->flag;
     $user->save();
