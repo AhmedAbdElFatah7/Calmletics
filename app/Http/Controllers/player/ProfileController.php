@@ -94,27 +94,21 @@ public function logoutcom(Request $request)
 
 public function updatepassword(Request $request)
 {
-    $validator = Validator::make($request->all(), [
-        'password' => 'required|string|min:8|confirmed',
-    ]);
-
-    if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 422);
-    }
 
     $user = User::find(auth()->id());
+    $validator = Validator::make($request->all(), [
+        'old_password' => 'required',
+        'password' => 'required|min:6|confirmed']);
 
-    if (!$user) {
-        return response()->json(['error' => 'User not found'], 404);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+    if (!Hash::check($request->old_password, $user->password)) {
+        return response()->json(['message' => 'Old password is incorrect'], 400);
     }
-
     $user->password = Hash::make($request->password);
     $user->save();
 
-    return response()->json([
-        'message' => 'Password updated successfully',
-    ], 200);
+    return response()->json(['message' => 'Password changed successfully'], 200);
 }
-
-
 }
