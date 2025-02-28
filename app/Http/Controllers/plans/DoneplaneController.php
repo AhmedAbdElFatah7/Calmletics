@@ -73,6 +73,9 @@ class DoneplaneController extends Controller
     public function getNextContent(Request $request)
     {
         $user = auth()->user();
+        if ($user->plan_id) {
+            $plan_id = $user->plan_id;
+            }
         if (!$user->plan_id) {
             if ($user->com_free_id ) {
                 $plan_id = $user->comFree->plan_id;
