@@ -17,6 +17,9 @@ class DoneplaneController extends Controller
     {
         $user = auth()->user();
         $contentNumber = $request->content_number;
+        if ($user->plan_id) {
+        $plan_id = $user->plan_id;
+        }
         if (!$user->plan_id) {
             if ($user->com_free_id ) {
                 $plan_id = $user->comFree->plan_id;
@@ -31,7 +34,7 @@ class DoneplaneController extends Controller
 
         $completedThisWeek = DB::table('doneplans')
             ->where('user_id', $user->id)
-            ->where('done', true) // التأكد من أنها مكتملة
+            ->where('done', true) 
             ->whereRaw("YEARWEEK(created_at, 1) = ?", [$currentWeek]) 
             ->count();
     
