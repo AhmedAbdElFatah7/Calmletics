@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Models\PlanDate;
+use App\Models\Plandate;
 
 
 
@@ -59,7 +59,7 @@ class DoneplaneController extends Controller
                 'updated_at' => now(),
             ]);
         }
-        $planDate = PlanDate::Create(
+        $planDate = Plandate::Create(
             ['date' => $today,
              'user_id' => $user->id, 
             'score' => 10]
