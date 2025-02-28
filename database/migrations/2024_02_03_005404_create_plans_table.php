@@ -14,8 +14,22 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('content');
-            $table->string('week');
+            $table->text('content1');
+            $table->text('content2');
+            $table->text('content3');
+            $table->text('content4');
+            $table->text('content5');
+            $table->text('content6');
+            $table->text('content7');
+            $table->text('content8');
+            $table->text('content9');
+            $table->text('content10');
+            $table->text('content11');
+            $table->text('content12');
+            $table->text('content13');
+            $table->text('content14');
+            $table->text('content15');
+            $table->text('content16');
             $table->timestamps();
         });
     }

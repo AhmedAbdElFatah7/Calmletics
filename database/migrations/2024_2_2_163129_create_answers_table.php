@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
+            $table->string('Age');
+            $table->string('Years_of_Excersie_Experince');
+            $table->string('Weekly_Anxiety');
+            $table->string('Daily_App_Usage');
+            $table->string('Comfort_in_Social_Situations');
+            $table->string('Competition_Level');
+            $table->string('anxiety_level');
             $table->string('gender');
-            $table->string('age');
-            $table->string('current_situation');
-            $table->string('prac_sports');
-            $table->string('anxious_week');
-            $table->string('feel_anxious');
-            $table->string('treating_anxiety');
-            $table->string('act_in_situations');
-            $table->string('describe_mood');
-            $table->string('content _health_support');
-            $table->string('apps_daily');
-            $table->string('social_situations');
-            $table->string('source_anxiety');
-            $table->string('anxiety_match');
-            $table->string('interacting_with_people');
+            $table->string('Current_Status');
+            $table->string('Feeling_Anxious');
+            $table->string('Preferred_Anxiety_Treatment');
+            $table->string('Handling_Anxiety_Situations');
+            $table->string('General_Mood');
+            $table->string('Preferred_Content');
+            $table->string('Online_Interaction_Over_Offline');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

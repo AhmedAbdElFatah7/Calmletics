@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('doneplans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('plan_id');
+            $table->integer('content_number');
             $table->unsignedBigInteger('user_id');
             $table->boolean('done');
             $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');

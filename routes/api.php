@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Answer\AnswerController;
 use App\Http\Controllers\auth\CoachController;
 use App\Http\Controllers\auth\ForgotPasswordController;
 use App\Http\Controllers\auth\PlayerController;
+use App\Http\Controllers\plans\DoneplaneController;
 use App\Http\Controllers\player\ProfileController;
 use App\Http\Controllers\plans\PlandatesController;
 use App\Http\Controllers\player\FreeCommunityController;
@@ -60,7 +62,10 @@ Route::middleware(['jwt.auth'])->prefix('player')->group(function () {
 
     Route::get('/userInfo', [ProfileController::class, 'getUserInfo']);
     Route::get('/score', [ProfileController::class, 'score']);
+    Route::post('/answers', [AnswerController::class, 'storeAnswers']);
 
+    Route::post('/done', [DoneplaneController::class, 'updateProgress']); // تحديث التقدم
+    Route::get('/get-content', [DoneplaneController::class, 'getNextContent']);
 
 });
 

@@ -62,7 +62,9 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(planDate::class);
     }
 
-    public function answers() { return $this->belongsTo(Answer::class); } 
+    public function answers() {
+         return $this->belongsTo(Answer::class);
+         } 
 
     public function comPre()
     {
@@ -82,5 +84,5 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(plan::class, 'plan_id', 'id');
     }
-    
+
 }

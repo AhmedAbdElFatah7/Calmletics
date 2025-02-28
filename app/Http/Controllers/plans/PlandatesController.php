@@ -10,35 +10,35 @@ use Illuminate\Support\Facades\Auth;
 
 class PlandatesController extends Controller
 {
-    public function storeScore(Request $request)
-    {
-        $request->validate([
-            'score' => 'required|integer|min:0'
-        ]);
+    // public function storeScore(Request $request)
+    // {
+    //     $request->validate([
+    //         'score' => 'required|integer|min:0'
+    //     ]);
 
-        $user = Auth::user();
-        if (!$user) {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
+    //     $user = Auth::user();
+    //     if (!$user) {
+    //         return response()->json(['message' => 'Unauthorized'], 401);
+    //     }
 
-        $today = Carbon::today()->toDateString();
+    //     $today = Carbon::today()->toDateString();
 
-        // $planDate = PlanDate::updateOrCreate(
-        //     ['date' => $today, 'user_id' => $user->id], 
-        //     ['score' => $request->score]
-        // );
-           $planDate = PlanDate::Create(
-            ['date' => $today,
-             'user_id' => $user->id, 
-            'score' => $request->score]
-         );
+    //     // $planDate = PlanDate::updateOrCreate(
+    //     //     ['date' => $today, 'user_id' => $user->id], 
+    //     //     ['score' => $request->score]
+    //     // );
+    //        $planDate = PlanDate::Create(
+    //         ['date' => $today,
+    //          'user_id' => $user->id, 
+    //         'score' => $request->score]
+    //      );
 
 
-        return response()->json([
-            'message' => 'Score saved successfully',
-            'data' => $planDate
-        ], 200);
-    }
+    //     return response()->json([
+    //         'message' => 'Score saved successfully',
+    //         'data' => $planDate
+    //     ], 200);
+    // }
 
     public function getScoresForLast7Days()
     {
