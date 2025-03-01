@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('Daily_App_Usage');
             $table->string('Comfort_in_Social_Situations');
             $table->string('Competition_Level');
-            $table->string('anxiety_level');
+            $table->string('anxiety_level')->nullable();
             $table->string('gender');
             $table->string('Current_Status');
             $table->string('Feeling_Anxious');

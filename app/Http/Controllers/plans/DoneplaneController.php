@@ -17,16 +17,20 @@ class DoneplaneController extends Controller
     {
         $user = auth()->user();
         $contentNumber = $request->content_number;
-        if ($user->plan_id) {
-        $plan_id = $user->plan_id;
+
+        if ($user->com_free_id ) {
+            $plan_id = $user->comFree->plan_id;
+        } else if ($user->com_pre_id) {
+            $plan_id = $user->comPre->plan_id;
+        }elseif ($user->plan_id) {
+            $plan_id = $user->plan_id;
+        }else {
+            return response()->json([
+                'message' => "user havn't plan ⏳"
+            ], 403);
         }
-        if (!$user->plan_id) {
-            if ($user->com_free_id ) {
-                $plan_id = $user->comFree->plan_id;
-            } else {
-                $plan_id = $user->comPre->plan_id;
-            }
-        }
+
+
             $currentWeek = now()->format('oW'); 
             $today = Carbon::today()->toDateString();
 
@@ -73,20 +77,18 @@ class DoneplaneController extends Controller
     public function getNextContent(Request $request)
     {
         $user = auth()->user();
-        if ($user->plan_id) {
+        if ($user->com_free_id ) {
+            $plan_id = $user->comFree->plan_id;
+        } else if ($user->com_pre_id) {
+            $plan_id = $user->comPre->plan_id;
+        }elseif ($user->plan_id) {
             $plan_id = $user->plan_id;
-            }
-        if (!$user->plan_id) {
-            if ($user->com_free_id ) {
-                $plan_id = $user->comFree->plan_id;
-            } else {
-                $plan_id = $user->comPre->plan_id;
-            }
+        }else {
+            return response()->json([
+                'message' => "user havn't plan ⏳"
+            ], 403);
         }
-    
         $currentWeek = now()->format('oW');
-    
-        // حساب عدد المحتويات المكتملة خلال هذا الأسبوع
         $completedThisWeek = DB::table('doneplans')
             ->where('user_id', $user->id)
             ->where('done', true)
@@ -99,16 +101,13 @@ class DoneplaneController extends Controller
             ], 403);
         }
     
-        // جلب آخر محتوى أكمله المستخدم
         $lastCompleted = DB::table('doneplans')
             ->where('user_id', $user->id)
             ->where('done', true)
             ->max('content_number');
     
-        // تحديد المحتوى الجديد المطلوب
         $nextContentNumber = $lastCompleted ? $lastCompleted + 1 : 1;
     
-        // التأكد من أن المحتوى الجديد لم يتم تسجيله مسبقًا
         $alreadyExists = DB::table('doneplans')
             ->where('user_id', $user->id)
             ->where('content_number', $nextContentNumber)

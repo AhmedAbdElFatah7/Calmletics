@@ -63,8 +63,8 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function answers() {
-         return $this->belongsTo(Answer::class);
-         } 
+        return $this->hasOne(Answer::class);
+    } 
 
     public function comPre()
     {

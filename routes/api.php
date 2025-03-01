@@ -48,7 +48,7 @@ Route::post('send-verification-code', [ForgotPasswordController::class, 'sendema
 Route::middleware(['jwt.auth'])->prefix('player')->group(function () {
     
     Route::post('/getScore', [HomeController::class, 'getScore']);
-    Route::get('/userPlan', [HomeController::class, 'userPlan']);
+    // Route::get('/userPlan', [HomeController::class, 'userPlan']);
     Route::post('/image', [HomeController::class, 'image']);
     Route::post('/flag', [HomeController::class, 'flag']);
 
@@ -63,6 +63,7 @@ Route::middleware(['jwt.auth'])->prefix('player')->group(function () {
     Route::get('/userInfo', [ProfileController::class, 'getUserInfo']);
     Route::get('/score', [ProfileController::class, 'score']);
     Route::post('/answers', [AnswerController::class, 'storeAnswers']);
+    Route::get('/getanswers', [AnswerController::class, 'getUserAnswer']);
 
     Route::post('/done', [DoneplaneController::class, 'updateProgress']); // تحديث التقدم
     Route::get('/get-content', [DoneplaneController::class, 'getNextContent']);
