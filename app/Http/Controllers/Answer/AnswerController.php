@@ -86,8 +86,7 @@ public function getUserAnswer()
     }
 
     return response()->json([
-        'message' => 'User answer retrieved successfully',
-        'answer' => collect($answer)->except(['id', 'user_id', 'created_at', 'updated_at']),
+          collect($answer)->except(['id', 'user_id', 'created_at', 'updated_at']),
     ], 200);
 }
 }
