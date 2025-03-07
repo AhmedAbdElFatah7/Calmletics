@@ -46,23 +46,26 @@ class AnswerController extends Controller
         return response()->json(['errors' => $validator->errors()], 422);
     }
 
-    $answer = Answer::create([
-        'user_id' => $user->id,
-        'Age' => $request->Age,
-        'Years_of_Excersie_Experince' => $request->Years_of_Excersie_Experince,
-        'Weekly_Anxiety' => $request->Weekly_Anxiety,
-        'Daily_App_Usage' => $request->Daily_App_Usage,
-        'Comfort_in_Social_Situations' => $request->Comfort_in_Social_Situations,
-        'Competition_Level' => $request->Competition_Level,
-        'gender' => $request->gender,
-        'Current_Status' => $request->Current_Status,
-        'Feeling_Anxious' => $request->Feeling_Anxious,
-        'Preferred_Anxiety_Treatment' => $request->Preferred_Anxiety_Treatment,
-        'Handling_Anxiety_Situations' => $request->Handling_Anxiety_Situations,
-        'General_Mood' => $request->General_Mood,
-        'Preferred_Content' => $request->Preferred_Content,
-        'Online_Interaction_Over_Offline' => $request->Online_Interaction_Over_Offline,
-    ]);
+    $answer = Answer::updateOrCreate(
+        ['user_id' => $user->id], 
+        [
+            'Age' => $request->Age,
+            'Years_of_Excersie_Experince' => $request->Years_of_Excersie_Experince,
+            'Weekly_Anxiety' => $request->Weekly_Anxiety,
+            'Daily_App_Usage' => $request->Daily_App_Usage,
+            'Comfort_in_Social_Situations' => $request->Comfort_in_Social_Situations,
+            'Competition_Level' => $request->Competition_Level,
+            'gender' => $request->gender,
+            'Current_Status' => $request->Current_Status,
+            'Feeling_Anxious' => $request->Feeling_Anxious,
+            'Preferred_Anxiety_Treatment' => $request->Preferred_Anxiety_Treatment,
+            'Handling_Anxiety_Situations' => $request->Handling_Anxiety_Situations,
+            'General_Mood' => $request->General_Mood,
+            'Preferred_Content' => $request->Preferred_Content,
+            'Online_Interaction_Over_Offline' => $request->Online_Interaction_Over_Offline,
+        ]
+    );
+    
 
     return response()->json([
         'message' => 'Answers stored successfully',
