@@ -89,7 +89,21 @@ public function getUserAnswer()
     }
 
     return response()->json([
-          collect($answer)->except(['id', 'user_id', 'created_at', 'updated_at']),
+        'Age' => $answer->Age,
+        'Years_of_Excersie_Experince' => $answer->Years_of_Excersie_Experince,
+        'Weekly_Anxiety' => $answer->Weekly_Anxiety,
+        'Daily_App_Usage' => $answer->Daily_App_Usage,
+        'Comfort_in_Social_Situations' => $answer->Comfort_in_Social_Situations,
+        'Competition_Level' => $answer->Competition_Level,
+        'anxiety_level' => $answer->anxiety_level,
+        'Gender' => $answer->gender,
+        'Current_Status' => $answer->Current_Status,
+        'Feeling_Anxious' => $answer->Feeling_Anxious,
+        'Preferred_Anxiety_Treatment' => $answer->Preferred_Anxiety_Treatment,
+        'Handling_Anxiety_Situations' => $answer->Handling_Anxiety_Situations,
+        'General_Mood' => $answer->General_Mood,
+        'Preferred_Content' => $answer->Preferred_Content,
+        'Online_Interaction_Over_Offline' => $answer->Online_Interaction_Over_Offline,
     ], 200);
 }
 }

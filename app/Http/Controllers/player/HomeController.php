@@ -29,7 +29,7 @@ class HomeController extends Controller
         $user->score = $request->score;
         $user->save();
     
-        $level = ($user->score < 35) ? 'low' : (($user->score > 75) ? 'high' : 'medium');
+        $level = ($user->score < 35) ? 'low' : (($user->score > 75) ? 'high' : 'Moderate');
     
         $answer = Answer::where('user_id', $user->id)->first();
         if ($answer) {
