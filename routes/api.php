@@ -51,6 +51,8 @@ Route::middleware(['jwt.auth'])->prefix('player')->group(function () {
     // Route::get('/userPlan', [HomeController::class, 'userPlan']);
     Route::post('/image', [HomeController::class, 'image']);
     Route::post('/flag', [HomeController::class, 'flag']);
+    Route::post('cluster', [HomeController::class, 'Cluster']);
+
 
     Route::post('/join', [FreeCommunityController::class, 'join']);
     Route::post('/community', [FreeCommunityController::class, 'community']);
@@ -67,6 +69,7 @@ Route::middleware(['jwt.auth'])->prefix('player')->group(function () {
 
     Route::post('/done', [DoneplaneController::class, 'updateProgress']); // تحديث التقدم
     Route::get('/get-content', [DoneplaneController::class, 'getNextContent']);
+
 
 });
 

@@ -92,4 +92,24 @@ class HomeController extends Controller
 
         return response()->json(['message' => 'flag stored successfully'], 200);
     }
+
+    public function Cluster(Request $request)
+    {
+        $request->validate([
+            'cluster' => 'required|numeric',
+        ]);
+
+        $user = User::find(auth()->id());
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $user->cluster = $request->cluster;
+        $user->save();
+
+        return response()->json(['message' => 'Cluster updated successfully', 'user' => $user], 200);
+    }
 }
+
+
